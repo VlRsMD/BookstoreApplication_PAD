@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  payment:
+    image: 'docker-springboot-postgres:payment'
+    ports:
+      - "8091:8091"
+    build:
+      context: .
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:7777/payment_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=schwimmen99
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  postgres:
+    image: "postgres:14"
+    ports:
+      - "7777:7777"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=schwimmen99
+      - POSTGRES_DB = payment_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
