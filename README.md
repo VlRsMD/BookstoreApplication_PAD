@@ -110,3 +110,42 @@ Each microservice of tthe application is depployed independently and has a corre
 - In order to create a container for the Payment microservice open in an IDE the project folder of the Payment Microservice available here: https://drive.google.com/drive/folders/1N2ZfGC9Y4YZ18A_UO4qCIfi2VGA0gIbT. And then find under the 'Payment' folder the 'docker-compose.yml' file - running this file will create the Docker container for the Payment microservice.
 - In order to create a container for the Storage microservice the open in an IDE the project folder of the Storage Microservice available here: https://drive.google.com/drive/folders/1KWl_9Cc7hdSCsGAD1JlXoBxFT5qE0WAF. And then find under the 'Storage' folder the 'docker-compose.yml' file - running this file will create the Docker container for the Storage microservice.
 - In order to create a container for the Gateway microservice open in an IDE the project folder of the Gateway Microservice available here: https://drive.google.com/drive/folders/1XsIDYleQo4VpqRHt3ZzEvbWi90Hg3PkG. And then find under the 'Gateway' folder the 'docker-compose.yml' file - running this file will create the Docker container for the Gateway microservice.
+<br/>
+<br/>
+
+**9. Circuit Breaker**
+
+In order to prevent to application from performing operations that could lead to failure I will implement a Circuit Breaker provided by Spring Cloud. If multiple reroutes will hapen the Circuit breaker will stop routing to the correspondent microservice.
+<br/>
+<br/>
+
+**10. Service High Availablity**
+
+In order to provide the service high availability I will use strategies such as creating reserve replicas of the application for the situation if a deployed entity of the application is automatically deleted or recreated; and instructing the scheduler to avoid starting multiple Pods of the same Deployment on the same node.
+<br/>
+<br/>
+
+**11. ELK stack for logging**
+
+In order to perform logging I will use ELK stack. ELK stack gives you the ability to aggregate logs from all your systems and applications, analyze these logs, and create visualizations for application and infrastructure monitoring, faster troubleshooting, security analytics, and more.
+<br/>
+<br/>
+
+**12. Long running Saga transactions**
+
+In order to ensure successful completion of long-running transactions I will implement Saga, which breaks down a long-running transaction’s steps into a series of short transactions. It also manages each of these short transactions, issuing compensating transactions for those that fail. It maintains state across all of the short-running transactions using database storage for persistence. The Saga retries short transactions when necessary, based on message queues and timers.
+<br/>
+<br/>
+
+**12. Consistent Hashing for Cache**
+Consistent Hashing guarantees that the number of virtual names assigned to each cache will be evenly distributed among the caches ensuring that page load is uniformly distributed over caches.
+<br/>
+<br/>
+
+**13. Cache High Availability**
+High availability (HA) will be keeping the application operational and available very high percentage of the time, minimizing both planned and unplanned down time.
+<br/>
+<br/>
+
+
+
