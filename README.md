@@ -6,9 +6,9 @@
 **1. Application Suitability**
 
 - Online Book Store application should provide possibility to manage, buy, add, remove, sell and ship books. Such kind of a system is a complex one.
-- It is relevant to use microservice architecture and to build the backend of the Online Book Store server application as a set of small services. Each microservice should implement a specific end-to-end functionality within a certain context boundary.
-- In the Online Book Store app there will be several services, each dedicated to a separate set of functionalities: Account service, Storage service, Shipping Service, Payment Service and Authentication & Authorization service. Those services will be loosely coupled and each of them will have autonomy of development, deployment and scale.
-- Microservice architecture in this application will encrease maintainability of the system. Microservice can be scaled independently. Instead of scaling a single monolithic application you can instead scale one of the specific microservices. Thus, you can scale just the functional area of the system providing more processing power or network bandwidth instead of scaling other areas of the app which don't require scaling.
+- It is relevant to use microservice architecture and to build the backend of the Online Book Store server application as a set of small services. Each microservice implements a specific end-to-end functionality within a certain context boundary.
+- In the Online Book Store app there are be several services, each dedicated to a separate set of functionalities: Storage service, Payment Service and Order service. Those services are loosely coupled and each of them has autonomy of development, deployment and scale.
+- Microservice architecture in this application encrease maintainability of the system. Microservice can be scaled independently. Instead of scaling a single monolithic application you can instead scale one of the specific microservices. Thus, you can scale just the functional area of the system providing more processing power or network bandwidth instead of scaling other areas of the app which don't require scaling.
 - Microservice architecture also allows to run and test services in isolation and to evolve them independently while maintaining contracts between them.
 
 <br/>
@@ -23,123 +23,76 @@ An example of a platform which uses microservice architecture and containerizati
 
 **3. Service boundaries**
 
-The microservice architecture of the system will include following microservices:
+The microservice architecture of the system includes following microservices:
 
 - **Storage Service**
 
-This service will be responsible of managing information about the book storage. In this service the management of books specific data, such as title, author, year of edition and etc. will be handled. This microservice will perform CRUD operations on books data.
+This service is responsible of managing information about the book storage. In this service the management of books specific data, such as title, author, year of edition and etc. are handled. This microservice performs CRUD operations on books data.
 
 - **Order Service**
 
-This service will be responsible of managing data about orders made by users from the book store. In this service the management of order specific data, such as the name of the person who made the order, the address of that person, the book ordered, the time of the order and etc. will be handled. This microservice will perform CRUD operations on orders data.
+This service is responsible of managing data about orders made by users from the book store. In this service the management of order specific data, such as the name of the person who made the order, the address of that person, the book ordered, the time of the order and etc. are handled. This microservice performs CRUD operations on orders data.
 
 - **Payment Service**
 
-This service will be responsible of managing information about payments. In this service the management of payments specific data, such as the name of the payer, the method of payment, the item payed for and etc. will be handled. This microservice will perform CRUD operations on payments data.
+This service is responsible of managing information about payments. In this service the management of payments specific data, such as the name of the payer, the method of payment, the item payed for and etc. are handled. This microservice performs CRUD operations on payments data.
 
 <br/>
 <br/>
 
-**4. System architecture diagram**
+**4. Technology Stack and Communication Patterns**
 
-![image](https://github.com/VlRsMD/OnlineBookStore/assets/90247966/d9db6d49-4ab7-4971-9dd8-74aac28f660b)
-
-
-<br/>
-<br/>
-
-**5. Technology Stack and Communication Patterns**
-
-For the backend development of the app services I will use Java programming language and Spring Boot framework. For data storage I will use Spring Data for Apache Cassandra, because Cassandra as a NoSQL database can provide faster data processing. I will use RESTful APIs to enable inter-service communication.
+For the backend development of the app services I use Java and Kotlin programming languages and Spring Boot framework. For data storage I use Spring Data for PostgreSQL. I use RESTful APIs to enable inter-service communication.
 
 <br/>
 <br/>
 
-**6. Data Management**
+**5. Data Management**
 
-Each of the services will be linked to a separate database to store the service specific data. The services will be enabled to communicate via APIs. Data will be transferred in JSON format.
+Each of the services is linked to a separate database to store the service specific data. The services are enabled to communicate via APIs. Data is transferred in JSON format.
 
-The services will include following endpoints for specific services:
+The services include following endpoints for specific services:
 
 
 **2) For Storage Service:**
 
 - **/book**
 
-This endpoint will accept GET and POST requests. On the GET request to that endpoint data all the books will be displayed and the HTTP response will looks like in the following example:
-
-![image](https://github.com/VlRsMD/OnlineBookStore/assets/90247966/d21b2a9f-1fa9-4a34-b0f0-f9b5ad353336)
-
-
-On the POST request to that endpoint a new book will be submitted and the response will look like in the following example:
-
-![image](https://github.com/VlRsMD/OnlineBookStore/assets/90247966/9363ce17-894a-472a-b862-db3729f2a094)
+This endpoint accepts GET and POST requests. On the GET request to that endpoint data about all the books is displayed.
+On the POST request to that endpoint a new book is submitted.
 
 
 - **/book/{id}**
 
-This endpoint will accept DELETE and PUT requests. On the DELETE request to that endpoint the book with ID indicated in the path will be deleted and the response will look like in the following example:
-
-![image](https://github.com/VlRsMD/OnlineBookStore/assets/90247966/2df04cdc-4c99-4f67-94ef-8329066cd85d)
-
-
-On the PUT request to that endpoint the data about the book with ID indicated in the path will be updated and the response will look in the following way:
-
-![image](https://github.com/VlRsMD/OnlineBookStore/assets/90247966/fc1600be-4f8e-4f79-a093-cf9c5a15d172)
+This endpoint accepts DELETE and PUT requests. On the DELETE request to that endpoint the book with ID indicated in the path is deleted.
+On the PUT request to that endpoint the data about the book with ID indicated in the path is updated.
 
 
 **3) For Order Service:**
 
 - **/order**
 
-This endpoint will accept GET and POST requests. On the GET request to that endpoint all the orders will be displayed and the response will look like in the following example:
-
-![image](https://github.com/VlRsMD/OnlineBookStore/assets/90247966/aa65f743-bee2-469d-957e-e1544cf8fd92)
-
-
-On the POST request to that endpoint new order will be submitted and the response will look in the following way:
-
-![image](https://github.com/VlRsMD/OnlineBookStore/assets/90247966/b0efb05b-f4d2-4bf8-bbb9-8e661bac829f)
+This endpoint accepts GET and POST requests. On the GET request to that endpoint all the orders are displayed.
+On the POST request to that endpoint new order is submitted.
 
 
 - **/order/{id}**
 
-This endpoint will accept DELETE and PUT requests. On the DELETE request to that endpoint the order with ID indicated in the path will be deleted and the response will look like in the following example:
-
-![image](https://github.com/VlRsMD/OnlineBookStore/assets/90247966/1fc54352-3cd6-416b-9889-530a9ec23869)
-
-
-On the PUT request to that endpoint the data about the order with ID indicated in the path will be updated and the response will look in the following way:
-
-![image](https://github.com/VlRsMD/OnlineBookStore/assets/90247966/2820fdb8-152f-4dd9-a3fe-488b9644a788)
+This endpoint accepts DELETE and PUT requests. On the DELETE request to that endpoint the order with ID indicated in the path is deleted.
+On the PUT request to that endpoint the data about the order with ID indicated in the path is updated.
 
 
 **4) For Payment Service:**
 
 - **/payment**
 
-This endpoint will accept GET and POST requests. On the GET request to that endpoint all the payments will be displayed and the response will look like in the following example:
-
-![image](https://github.com/VlRsMD/OnlineBookStore/assets/90247966/44c84d12-d203-40d0-b23c-225c3d5d5579)
-
-
-On the POST request to that endpoint new order will be submitted and the response will look in the following way:
-
-![image](https://github.com/VlRsMD/OnlineBookStore/assets/90247966/064d65a6-5d93-4998-bf15-36526ff4f0fc)
-
+This endpoint accepts GET and POST requests. On the GET request to that endpoint all the payments are displayed.
+On the POST request to that endpoint new order is submitted.
 
 - **/payment/{id}**
 
-This endpoint will accept DELETE and PUT requests. On the DELETE request to that endpoint the payment with ID indicated in the path will be deleted and the response will look like in the following example:
-
-![image](https://github.com/VlRsMD/OnlineBookStore/assets/90247966/b46561c6-bfba-44b1-82ed-12831cfe2c3c)
-
-
-On the PUT request to that endpoint the data about the payment with ID indicated in the path will be updated and the response will look in the following way:
-
-![image](https://github.com/VlRsMD/OnlineBookStore/assets/90247966/7d9896e9-98f8-41b6-9238-de0baf2fc751)
-
-
+This endpoint accepts DELETE and PUT requests. On the DELETE request to that endpoint the payment with ID indicated in the path is deleted.
+On the PUT request to that endpoint the data about the payment with ID indicated in the path is updated.
 
 <br/>
 <br/>
