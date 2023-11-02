@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  storage:
+    image: 'docker-springboot-postgres:storage'
+    ports:
+      - "8092:8092"
+    build:
+      context: .
+    depends_on:
+      - postgres
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/storage_db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=schwimmen77
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+  postgres:
+    image: "postgres:16"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=schwimmen77
+      - POSTGRES_DB = storage_db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+volumes:
+  pgdata:
