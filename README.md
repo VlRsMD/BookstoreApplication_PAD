@@ -99,4 +99,4 @@ On the PUT request to that endpoint the data about the payment with ID indicated
 
 **7. Deployment and Scaling**
 
-For containerizing the Online Book store microservice application Docker will be used as a container engine. And for automating of deployment, scaling and management of the application Kubernetes will be used as a container orchestration platform.
+For containerizing the Online Book store microservice application Docker is used as a container engine. And for automating of deployment, scaling and management of the application Kubernetes will be used as a container orchestration platform.
