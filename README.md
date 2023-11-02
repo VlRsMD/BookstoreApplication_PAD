@@ -138,11 +138,13 @@ In order to ensure successful completion of long-running transactions I will imp
 <br/>
 
 **12. Consistent Hashing for Cache**
+
 Consistent Hashing guarantees that the number of virtual names assigned to each cache will be evenly distributed among the caches ensuring that page load is uniformly distributed over caches.
 <br/>
 <br/>
 
 **13. Cache High Availability**
+
 High availability (HA) will be keeping the application operational and available very high percentage of the time, minimizing both planned and unplanned down time.
 <br/>
 <br/>
