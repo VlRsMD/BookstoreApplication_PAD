@@ -1,3 +1,5 @@
+package com.example.Payment.payment;
+
 import jakarta.persistence.*;
 
 @Entity
