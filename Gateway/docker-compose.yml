@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    image: 'docker-springboot:api-gateway'
+    ports:
+      - "8093:8093"
+    build:
+      context: .
+
