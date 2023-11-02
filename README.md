@@ -100,3 +100,9 @@ On the PUT request to that endpoint the data about the payment with ID indicated
 **7. Deployment and Scaling**
 
 For containerizing the Online Book store microservice application Docker is used as a container engine. And for automating of deployment, scaling and management of the application Kubernetes will be used as a container orchestration platform.
+<br/>
+<br/>
+
+**7. Running Docker containers for the Microservices**
+Each microservice of tthe application is depployed independently and has a correspondent Docker container. At current stage of the project the containers can be build using the correspondent project which build this appliccation.
+- In order to create a container for the Order microservice the open in an IDE the project folder of the order Microservice available here: https://drive.google.com/drive/folders/1NANVTOLkLb7CLn6_mmXfAstgVd1NiNSl. And then find under the 'Orders' folder the 'docker-compose.yml' file - running this file will create the Docker container for the Orders microservice.
