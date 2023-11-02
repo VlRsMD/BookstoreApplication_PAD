@@ -1,3 +1,5 @@
+package com.example.Storage.storage;
+
 import jakarta.persistence.*;
 
 @Entity
