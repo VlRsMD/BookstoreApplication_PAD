@@ -103,6 +103,10 @@ For containerizing the Online Book store microservice application Docker is used
 <br/>
 <br/>
 
-**7. Running Docker containers for the Microservices**
+**8. Running Docker containers for the Microservices**
+
 Each microservice of tthe application is depployed independently and has a correspondent Docker container. At current stage of the project the containers can be build using the correspondent project which build this appliccation.
-- In order to create a container for the Order microservice the open in an IDE the project folder of the order Microservice available here: https://drive.google.com/drive/folders/1NANVTOLkLb7CLn6_mmXfAstgVd1NiNSl. And then find under the 'Orders' folder the 'docker-compose.yml' file - running this file will create the Docker container for the Orders microservice.
+- In order to create a container for the Order microservice open in an IDE the project folder of the order Microservice available here: https://drive.google.com/drive/folders/1NANVTOLkLb7CLn6_mmXfAstgVd1NiNSl. And then find under the 'Orders' folder the 'docker-compose.yml' file - running this file will create the Docker container for the Orders microservice.
+- In order to create a container for the Payment microservice open in an IDE the project folder of the Payment Microservice available here: https://drive.google.com/drive/folders/1N2ZfGC9Y4YZ18A_UO4qCIfi2VGA0gIbT. And then find under the 'Payment' folder the 'docker-compose.yml' file - running this file will create the Docker container for the Payment microservice.
+- In order to create a container for the Storage microservice the open in an IDE the project folder of the Storage Microservice available here: https://drive.google.com/drive/folders/1KWl_9Cc7hdSCsGAD1JlXoBxFT5qE0WAF. And then find under the 'Storage' folder the 'docker-compose.yml' file - running this file will create the Docker container for the Storage microservice.
+- In order to create a container for the Gateway microservice open in an IDE the project folder of the Gateway Microservice available here: https://drive.google.com/drive/folders/1XsIDYleQo4VpqRHt3ZzEvbWi90Hg3PkG. And then find under the 'Gateway' folder the 'docker-compose.yml' file - running this file will create the Docker container for the Gateway microservice.
