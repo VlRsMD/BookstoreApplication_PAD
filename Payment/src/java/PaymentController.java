@@ -3,13 +3,11 @@ package com.example.Payment.payment;
 import com.example.Payment.LoadBalancerConfiguration;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
-import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "payment")
 @LoadBalancerClient(name = "payment",
         configuration= LoadBalancerConfiguration.class)
 @RestController
