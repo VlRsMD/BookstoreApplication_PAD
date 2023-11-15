@@ -121,7 +121,7 @@ In order to prevent to application from performing operations that could lead to
 
 **9. Service High Availablity**
 
-In order to provide the service high availability I will use strategies such as creating reserve replicas of the application for the situation if a deployed entity of the application is automatically deleted or recreated; and instructing the scheduler to avoid starting multiple Pods of the same Deployment on the same node.
+In order to achieve the service high availability I implement load balancing on the microservices. Also the usage of circuit breakers together with fallback methods on microservices helps to increase the availabilty of the services. Another approach used is implementing logging.
 <br/>
 <br/>
 
