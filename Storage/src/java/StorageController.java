@@ -1,21 +1,17 @@
 package com.example.Storage.storage;
 
-import com.example.Storage.LoadBalancerConfiguration;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@LoadBalancerClient(name = "storage",
-        configuration= LoadBalancerConfiguration.class)
 @RestController
 @RequestMapping("storage")
-public class StorageController {
+public class StorageController implements StorageControllerInterface {
     private static final Logger LOG = LogManager.getLogger(StorageController.class);
     private final StorageService storageService;
 
@@ -23,6 +19,7 @@ public class StorageController {
         this.storageService = storageService;
     }
 
+    @Override
     @GetMapping
     @Transactional(timeout = 500)
     @CircuitBreaker(name = "circuitBreaker1", fallbackMethod = "fallback1")
@@ -31,6 +28,7 @@ public class StorageController {
         return storageService.getStorage();
     }
 
+    @Override
     @PostMapping()
     @Transactional(timeout = 500)
     @CircuitBreaker(name = "circuitBreaker2", fallbackMethod = "fallback2")
@@ -39,6 +37,7 @@ public class StorageController {
         storageService.addBook(book);
     }
 
+    @Override
     @DeleteMapping("{bookId}")
     @Transactional(timeout = 500)
     @CircuitBreaker(name = "circuitBreaker3", fallbackMethod = "fallback3")
@@ -47,6 +46,7 @@ public class StorageController {
         storageService.deleteBook(bookId);
     }
 
+    @Override
     @PatchMapping("{bookId}")
     @Transactional(timeout = 500)
     @CircuitBreaker(name = "circuitBreaker4", fallbackMethod = "fallback4")
