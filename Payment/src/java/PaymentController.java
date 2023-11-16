@@ -1,24 +1,21 @@
 package com.example.Payment.payment;
 
-import com.example.Payment.LoadBalancerConfiguration;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
-import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@LoadBalancerClient(name = "payment",
-        configuration= LoadBalancerConfiguration.class)
 @RestController
 @RequestMapping("payment")
-public class PaymentController {
+public class PaymentController implements PaymentControllerInterface {
     private final PaymentService paymentService;
 
     public PaymentController(PaymentService paymentService) {
         this.paymentService = paymentService;
     }
 
+    @Override
     @GetMapping
     @Transactional(timeout = 500)
     @CircuitBreaker(name = "circuitBreaker1", fallbackMethod = "fallback1")
@@ -26,6 +23,7 @@ public class PaymentController {
         return paymentService.getPayments();
     }
 
+    @Override
     @PostMapping()
     @Transactional(timeout = 500)
     @CircuitBreaker(name = "circuitBreaker2", fallbackMethod = "fallback2")
@@ -33,6 +31,7 @@ public class PaymentController {
         paymentService.addPayment(payment);
     }
 
+    @Override
     @DeleteMapping("{paymentId}")
     @Transactional(timeout = 500)
     @CircuitBreaker(name = "circuitBreaker3", fallbackMethod = "fallback3")
@@ -40,6 +39,7 @@ public class PaymentController {
         paymentService.deletePayment(paymentId);
     }
 
+    @Override
     @PatchMapping("{paymentId}")
     @Transactional(timeout = 500)
     @CircuitBreaker(name = "circuitBreaker4", fallbackMethod = "fallback4")
