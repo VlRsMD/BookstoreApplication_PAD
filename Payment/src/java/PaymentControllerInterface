@@ -1,0 +1,37 @@
+package com.example.Payment.payment;
+
+import com.example.Payment.LoadBalancerConfiguration;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import org.springframework.cloud.loadbalancer.annotation.LoadBalancerClient;
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@FeignClient(name = "payment")
+@LoadBalancerClient(name = "payment",
+        configuration= LoadBalancerConfiguration.class)
+public interface PaymentControllerInterface {
+    @GetMapping
+    @Transactional(timeout = 500)
+    @CircuitBreaker(name = "circuitBreaker1", fallbackMethod = "fallback1")
+    List<Payment> getPayments();
+
+    @PostMapping()
+    @Transactional(timeout = 500)
+    @CircuitBreaker(name = "circuitBreaker2", fallbackMethod = "fallback2")
+    void addPayment(@RequestBody Payment payment);
+
+    @DeleteMapping("{paymentId}")
+    @Transactional(timeout = 500)
+    @CircuitBreaker(name = "circuitBreaker3", fallbackMethod = "fallback3")
+    void deletePayment(@PathVariable("paymentId") Long paymentId);
+
+    @PatchMapping("{paymentId}")
+    @Transactional(timeout = 500)
+    @CircuitBreaker(name = "circuitBreaker4", fallbackMethod = "fallback4")
+    void changePaymentMethod(
+            @PathVariable("paymentId") Long paymentId,
+            @RequestParam(required = false) String paymentMethod);
+}
